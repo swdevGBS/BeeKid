@@ -1,0 +1,7 @@
+.be-content {
+  position: relative;
+  left: 0;
+  /* margin-left: 125px; */
+  min-height: 100%;
+  margin-top: 10px;
+}

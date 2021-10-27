@@ -1,0 +1,113 @@
+<div *ngIf="!!isEditOrder" class="modal-custom" style="z-index: 9999; top: 0">
+    <div class="modal-dialog" style="margin-bottom: 200px">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Cập nhật thông tin đơn hàng</h4>
+                <button type="button" class="btn-close" (click)="closeModal()"></button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-sm-4" for="name">Tên KH:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="name" placeholder="Nhập tên khách hàng"
+                                    [(ngModel)]="name" name="name">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-sm-4" for="phone">Điện thoại:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="phone" placeholder="Nhập số điện thoại"
+                                    [(ngModel)]="phone" name="phone">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-sm-4" for="address">Địa chỉ:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ"
+                                    [(ngModel)]="address" name="address">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-sm-4" for="color">Mã sp đặt hàng</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" [(ngModel)]="itemCodeOrder" name="itemCodeOrder" (change)="onChange($event.target.value)" required>
+                                    <option value="" disabled selected hidden>Chọn sản phẩm</option>
+                                    <option [ngValue]="element.itemCode" *ngFor="let element of listItemCode;">{{element.itemCode}}-{{element.name}}</option>
+                                </select> 
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <label class="col-sm-4" for="color">Size & Color:</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" [(ngModel)]="sizeOrder" name="sizeOrder">
+                                    <option value="" disabled selected hidden>Chọn size</option>
+                                    <option [ngValue]="element" *ngFor="let element of size;">{{element}}</option>
+                                </select> 
+                            </div>
+                            <div class="col-sm-4">
+                                <select class="form-control" [(ngModel)]="colorOrder" name="colorOrder">
+                                    <option value="" disabled selected hidden>Chọn màu</option>
+                                    <option [ngValue]="element" *ngFor="let element of color;">{{element}}</option>
+                                </select> 
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <button type="button" class="btn btn-primary" (click)="addOrder()">Thêm</button>
+                            </div>
+                            <div class="col-sm-8">
+                                <!-- <div *ngFor="let element of listOrder; let i = index;" class="card bg-info text-white">
+                                    <p>{{element.name}}-{{element.size}}-{{element.color}}-{{element.price}}</p>
+                                </div> -->
+                                <div *ngFor="let element of listOrder; let i = index;" class="card bg-info text-white">
+                                    <div class="row">
+                                        <div class="col-sm-10">
+                                            <p>{{element.name}}-{{element.size}}-{{element.color}}-{{element.price}}</p>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <button type="button" class="btn-close" aria-label="Close" (click)= "deleteOrder(i)"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <br>
+                        <div class="row">
+                            <label class="col-sm-4" for="sumPrice">Tổng thanh toán:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="sumPrice"
+                                    [(ngModel)]="sumPrice" name="sumPrice">
+                            </div>
+                        </div>
+                        
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-success" style="margin-top: 20px;"
+                                (click)="update()">Create</button>
+                            <button type="button" class="btn btn-space btn-secondary"
+                                style="margin-top: 20px; margin-left: 20px;" (click)="closeModal()">Close</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
