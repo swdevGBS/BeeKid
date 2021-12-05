@@ -17,7 +17,7 @@ export class CustomerOrderComponent implements OnInit {
   dataCustomer : Customers [] = [];
   isAddCustomer : Boolean = false;
   loading: Boolean = false;
-
+  name: any;
   constructor(
     private customerApi: CustomersApi,
     private eventService: EventService,
@@ -73,5 +73,24 @@ export class CustomerOrderComponent implements OnInit {
     (err)=>{
       console.log(err);
     })
+  }
+  Search()
+  {
+    if(this.name =="")
+    {
+      this.ngOnInit();
+      //this.dataCustomer = this.dataCustomer;
+    }else{
+      this.dataCustomer = this.dataCustomer.filter(res=>{
+        return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
+      })
+    }
+  }
+  key ='id';
+  reverse: boolean= false;
+  sort(key)
+  {
+    this.key = key;
+    this.reverse = !this.reverse;
   }
 }

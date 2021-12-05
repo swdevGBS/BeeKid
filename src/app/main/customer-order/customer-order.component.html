@@ -11,11 +11,13 @@
         class="bi bi-cart-plus"></i> Lên đơn</button>
     <div class="col-sm-12 card card-table">
         <div class="panel panel-default panel-table">
-            
-            <table class="table table-striped table-hover table-fw-widget" id="table1">
+          <nav class="navbar">
+            <input class="form-control" type="text" name="name" [(ngModel)]="name" (change)="Search()" placeholder="Tìm kiếm tên khách hàng">
+          </nav>
+            <table id="dtVerticalScrollExample" class="table table-striped table-hover table-fw-widget" id="table1">
                 <thead>
                     <tr>
-                        <th>No.</th>
+                      <th (click)="sort('id')">No.&nbsp;<i class="fa fa-sort"></i></th>
                         <th>Tên KH</th>
                         <th>Số điện thoại</th>
                         <th>Địa chỉ</th>
@@ -25,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let element of dataCustomer; let i = index;" class="odd gradeX">
+                    <tr *ngFor="let element of dataCustomer  | orderBy: key: reverse | paginate:{itemsPerPage:10, currentPage:p}; let i = index;" class="odd gradeX">
                         <td>{{i+1}}</td>
                         <td>{{element.name}}</td>
                         <td>{{element.phone}}</td>
@@ -45,8 +47,19 @@
                     </tr>
                 </tbody>
             </table>
+            <pagination-controls (pageChange) = "p = $event"></pagination-controls>
         </div>
     </div>
+
 </div>
+<script>
+  $(document).ready(function () {
+$('#dtVerticalScrollExample').DataTable({
+"scrollY": "200px",
+"scrollCollapse": true,
+});
+$('.dataTables_length').addClass('bs-select');
+});
+</script>
 <app-create-customer></app-create-customer>
 <app-edit-customer></app-edit-customer>

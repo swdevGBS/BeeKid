@@ -16,7 +16,8 @@ export class DashBoardComponent implements OnInit {
   dataItems : Items [] = [];
   isAddItem : Boolean = false;
   loading: Boolean = false;
-
+  itemCode: any;
+  p: number =1;
   constructor(
     private itemApi: ItemsApi,
     private eventService: EventService,
@@ -50,6 +51,24 @@ export class DashBoardComponent implements OnInit {
         value: true
       }))
     )
+  }
+  Search()
+  {
+    if(this.itemCode =="")
+    {
+      this.ngOnInit();
+    }else{
+      this.dataItems = this.dataItems.filter(res=>{
+        return res.itemCode.toLocaleLowerCase().match(this.itemCode.toLocaleLowerCase());
+      })
+    }
+  }
+  key ='id';
+  reverse: boolean= false;
+  sort(key)
+  {
+    this.key = key;
+    this.reverse = !this.reverse;
   }
 
 }

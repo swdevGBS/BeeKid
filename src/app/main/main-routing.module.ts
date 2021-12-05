@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
 import {DashBoardComponent} from './dash-board/dash-board.component';
 import {CustomerOrderComponent} from './customer-order/customer-order.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -26,7 +27,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [
+    RouterModule.forChild(routes),
+
+
+  ],
   exports: [RouterModule],
 })
 export class MainRoutingModule {}
